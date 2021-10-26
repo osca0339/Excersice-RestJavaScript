@@ -20,15 +20,44 @@ namespace MusicRest
             return musicList;
         }
 
-        public Music Get(string title)
+        public Music Get(int id)
         {
-            return musicList.Find(m => m.Title == title);
+            return musicList.Find(m => m.Id == id);
         }
 
-        public Music GetByArtist(string artist)
+        public List<Music> GetTitle(string title)
         {
-            return musicList.Find(m => m.Artist == artist);
+            return musicList.FindAll(m => m.Title == title);
         }
+
+        public List<Music> GetByArtist(string artist)
+        {
+            List<Music> musicByArtist = new List<Music>();
+            foreach(Music m in musicList)
+            {
+                if(m.Artist == artist)
+                {
+                    musicByArtist.Add(m);
+                }
+            }
+            return musicByArtist;
+            
+        }
+
+        public List<Music> GetByPublicationYear(int publicationYear)
+        {
+            List<Music> musicByPublationYear = new List<Music>();
+            foreach(Music m in musicList)
+            {
+                if(m.PublicationYear == publicationYear)
+                {
+                    musicByPublationYear.Add(m);
+                }
+            }
+            return musicByPublationYear;
+        }
+        
+
 
         public List<Music> GetByDuration(int duration)
         {
@@ -49,9 +78,9 @@ namespace MusicRest
             return true;
         }
 
-        public bool Update(string title, Music value)
+        public bool Update(int id, Music value)
         {
-            Music music = Get(title);
+            Music music = Get(id);
             if(music != null)
             {
                 music.Title = value.Title;
@@ -63,9 +92,9 @@ namespace MusicRest
             return false;
         }
 
-        public Music Delete(string title)
+        public Music Delete(int id)
         {
-            Music musicToDelete = Get(title);
+            Music musicToDelete = Get(id);
             musicList.Remove(musicToDelete);
             return musicToDelete;
         }
