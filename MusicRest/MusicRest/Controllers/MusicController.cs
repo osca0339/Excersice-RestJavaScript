@@ -22,11 +22,11 @@ namespace MusicRest.Controllers
         }
 
         // GET api/<MusicController>/5
-        [HttpGet("{id}")]
-        public Music Get(int id)
-        {
-            return Get(id);
-        }
+        //[HttpGet("{id}")]
+        //public Music Get(int id)
+        //{
+        //    return Get(id);
+        //}
 
         // POST api/<MusicController>
         [HttpPost]

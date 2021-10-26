@@ -23,6 +23,9 @@ namespace MusicRest
             {
                 switch (filterBy.ToLower())
                 {
+                    case "id":
+                        musics = musics.FindAll(m => m.Id == Convert.ToInt32(criteria));
+                        break;
                     case "title":
                         musics = musics.FindAll(m => m.Title == criteria);
                         break;
