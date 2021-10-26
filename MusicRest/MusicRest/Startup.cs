@@ -29,7 +29,7 @@ namespace MusicRest
         {
 
             services.AddControllers();
-            services.AddDbContext<DataBaseContext>(opt => opt.UseSqlServer());
+            services.AddDbContext<DataBaseContext>(opt => opt.UseSqlServer("Data Source = jobu - db - server.database.windows.net; Initial Catalog = Jobu - db; User ID = Jobu; Password = Password1; Connect Timeout = 30; Encrypt = True; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False"));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MusicRest", Version = "v1" });
