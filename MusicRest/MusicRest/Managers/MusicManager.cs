@@ -1,4 +1,5 @@
-﻿using MusicRest.Models;
+﻿using MusicRest.Managers;
+using MusicRest.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MusicRest
 {
-    public class MusicManager
+    public class MusicManager : IManageMusic
     {
         private static List<Music> musicList = new List<Music>()
         {
@@ -15,7 +16,7 @@ namespace MusicRest
             new Music(3, "The Best", "Foo Fighters", 120, 2002)
         };
 
-        public List<Music> Get(string filterBy = null, string criteria = null)
+        public IEnumerable<Music> Get(string filterBy = null, string criteria = null)
         {
             List<Music> musics = musicList;
 
