@@ -7,24 +7,11 @@ namespace MusicRest.Models
 {
     public class Music
     {
-        private int _publicationYear;
         public int Id { get; set; }
-
         public string Title { get; set; }
         public string Artist { get; set; }
         public int Duration { get; set; }
-        public int PublicationYear
-        {
-            get => _publicationYear;
-            set
-            {
-                if(value > 2021)
-                {
-                    throw new ArgumentException();
-                }
-                _publicationYear = value;
-            }
-        }
+        public int PublicationYear { get; set; }
 
         public Music(int id, string title, string artist, int duration, int publicationYear)
         {
