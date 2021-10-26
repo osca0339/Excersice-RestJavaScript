@@ -26,8 +26,9 @@ namespace MusicRest.Models
             }
         }
 
-        public Music(string title, string artist, int duration, int publicationYear)
+        public Music(int id, string title, string artist, int duration, int publicationYear)
         {
+            Id = id;
             Title = title;
             Artist = artist;
             Duration = duration;

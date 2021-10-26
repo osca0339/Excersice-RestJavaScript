@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MusicRest.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,36 +13,40 @@ namespace MusicRest.Controllers
     [ApiController]
     public class MusicController : ControllerBase
     {
+        MusicManager musicManager = new MusicManager();
         // GET: api/<MusicController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Music> Get(string filterBy, string criteria)
         {
-            return new string[] { "value1", "value2" };
+            return musicManager.Get(filterBy, criteria);
         }
 
         // GET api/<MusicController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Music Get(int id)
         {
-            return "value";
+            return Get(id);
         }
 
         // POST api/<MusicController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public bool Post([FromBody] Music value)
         {
+            return musicManager.Create(value);
         }
 
         // PUT api/<MusicController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public bool Put(int id, [FromBody] Music value)
         {
+            return musicManager.Update(id, value);
         }
 
         // DELETE api/<MusicController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public Music Delete(int id)
         {
+            return musicManager.Delete(id);
         }
     }
 }

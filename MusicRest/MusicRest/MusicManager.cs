@@ -10,14 +10,35 @@ namespace MusicRest
     {
         private static List<Music> musicList = new List<Music>()
         {
-            new Music("My Heart Goes On", "Celine Dion", 100, 1999),
-            new Music("Bad", "Michael Jackson", 120, 1988),
-            new Music("The Best", "Foo Fighters", 120, 2002)
+            new Music(1, "My Heart Goes On", "Celine Dion", 100, 1999),
+            new Music(2, "Bad", "Michael Jackson", 120, 1988),
+            new Music(3, "The Best", "Foo Fighters", 120, 2002)
         };
 
-        public List<Music> Get()
+        public List<Music> Get(string filterBy = null, string criteria = null)
         {
-            return musicList;
+            List<Music> musics = musicList;
+
+            if(filterBy != null)
+            {
+                switch (filterBy.ToLower())
+                {
+                    case "title":
+                        musics = musics.FindAll(m => m.Title == criteria);
+                        break;
+                    case "artist":
+                        musics = musics.FindAll(m => m.Artist == criteria);
+                        break;
+                    case "duration":
+                        musics = musics.FindAll(m => m.Duration == Convert.ToInt32(criteria));
+                        break;
+                    case "publicationyear":
+                        musics = musics.FindAll(m => m.PublicationYear == Convert.ToInt32(criteria));
+                        break;
+                }
+            }
+
+            return musics;
         }
 
         public Music Get(int id)
